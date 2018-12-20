@@ -53,7 +53,7 @@ RCT_EXPORT_METHOD(Show:(nonnull NSNumber *)targetViewTag inParentView:(nonnull N
 
     NSMutableAttributedString *attributes = [[NSMutableAttributedString alloc] initWithString: text];
     [attributes addAttribute:NSForegroundColorAttributeName value:[RNTooltips colorFromHexCode: textColor] range:NSMakeRange(0, text.length)];
-    [attributes addAttribute:NSFontAttributeName value: [UIFont systemFontOfSize: [textSize floatValue]] range:NSMakeRange(0,text.length)];
+    [attributes addAttribute:NSFontAttributeName value: [UIFont fontWithName:@"SFProText-Regular" size: [textSize floatValue]] range:NSMakeRange(0,text.length)];
 
     toolTip = [[SexyTooltip alloc] initWithAttributedString: attributes sizedToView:parentView];
     toolTip.layer.zPosition = 9999; // make sure the tooltips is always in front of other views.
@@ -65,7 +65,7 @@ RCT_EXPORT_METHOD(Show:(nonnull NSNumber *)targetViewTag inParentView:(nonnull N
     toolTip.color = [RNTooltips colorFromHexCode: tintColor];
     toolTip.cornerRadius = [corner floatValue];
     toolTip.dismissesOnTap = [clickToHide boolValue];
-    toolTip.padding = UIEdgeInsetsMake(6.0, 8.0, 6.0, 8.0);
+    toolTip.padding = UIEdgeInsetsMake(10.0, 15.0, 10.0, 15.0);
     
     if (![arrow boolValue]) {
         toolTip.arrowHeight = 0;
