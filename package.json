@@ -1,6 +1,6 @@
 {
     "name": "react-native-tooltips",
-    "version": "0.0.10",
+    "version": "0.0.11",
     "description": "React Native: Native Tooltip View",
     "main": "RNTooltips.js",
     "scripts": {
