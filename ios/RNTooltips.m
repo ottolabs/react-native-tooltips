@@ -38,7 +38,7 @@ RCT_EXPORT_METHOD(Show:(nonnull NSNumber *)targetViewTag inParentView:(nonnull N
   }
     
   NSString *text = [props objectForKey: @"text"];
-//  NSNumber *position = [props objectForKey: @"position"]; // not used yet
+  NSNumber *position = [props objectForKey: @"position"]; // not used yet
 //  NSNumber *align = [props objectForKey: @"align"]; // not used yet
   NSNumber *autoHide = [props objectForKey: @"autoHide"];
   NSNumber *duration = [props objectForKey: @"duration"];
@@ -56,6 +56,17 @@ RCT_EXPORT_METHOD(Show:(nonnull NSNumber *)targetViewTag inParentView:(nonnull N
     [attributes addAttribute:NSFontAttributeName value: [UIFont fontWithName:@"SFProText-Regular" size: [textSize floatValue]] range:NSMakeRange(0,text.length)];
 
     toolTip = [[SexyTooltip alloc] initWithAttributedString: attributes sizedToView:parentView];
+    if (position != nil) {
+        if ([position intValue] == 0) {
+            toolTip.permittedArrowDirections = @[@(SexyTooltipArrowDirectionDown)];
+        } else if ([position intValue] == 1) {
+            toolTip.permittedArrowDirections = @[@(SexyTooltipArrowDirectionLeft)];
+        } else if ([position intValue] == 2) {
+            toolTip.permittedArrowDirections = @[@(SexyTooltipArrowDirectionUp)];
+        } else if ([position intValue] == 3) {
+            toolTip.permittedArrowDirections = @[@(SexyTooltipArrowDirectionRight)];
+        }
+    }
     toolTip.layer.zPosition = 9999; // make sure the tooltips is always in front of other views.
 
     TooltipDelegate *delegate = [[TooltipDelegate alloc] init];
